@@ -3,7 +3,7 @@ package org.velezreyes.quiz.question6;
 public class VendingMachineImpl implements VendingMachine {
 
   private static VendingMachineImpl instancia;
-  public int money_insert = 0;
+  public int money_insert;
   public static VendingMachine getInstance() {
     if (instancia == null) {
       instancia = new VendingMachineImpl();
@@ -14,24 +14,22 @@ public class VendingMachineImpl implements VendingMachine {
     this.money_insert = this.money_insert+25;
   }
 
-  public Drink pressButton(String name) {
+  public Drink pressButton(String name) throws UnknownDrinkException, NotEnoughMoneyException {
     NewDrink drink1 = new NewDrink(name);
-    try{
-      if(this.money_insert<value_scottCola && name.equals("ScottCola") ){
-        throw new NotEnoughMoneyException();
-      }
-      if (this.money_insert<value_tea && name.equals("KarenTea")) {
-        throw new NotEnoughMoneyException();
-      }
-      if (name.equals("ScottCola") == false && name.equals("KarenTea") == false){
-        throw new UnknownDrinkException();
-      }
-
-    }catch (NotEnoughMoneyException e) {
-      e.getMessage();
-    }catch(UnknownDrinkException u){
-      u.getMessage();
+    int money = getMoney_insert();
+    if(money<value_scottCola && name.equals("ScottCola") ){
+      throw new NotEnoughMoneyException();
+    } else if(money<value_tea && name.equals("KarenTea")) {
+      throw new NotEnoughMoneyException();
+    } else if (!name.equals("ScottCola") && !name.equals("KarenTea")){
+      throw new UnknownDrinkException();
+    }else{
+      return drink1;
     }
-    return drink1;
+  }
+
+  public int getMoney_insert() {
+    return this.money_insert;
   }
 }
+
