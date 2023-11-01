@@ -49,7 +49,7 @@ PEOPLE_ANIMALS = [
 # No need to look any further!
 ###
 
-DB_NAME = "quiz_pets"
+DB_NAME = "quiz_pets.db"
 
 def get_connection():
   return sqlite3.connect(DB_NAME)
@@ -67,3 +67,5 @@ def create_db():
     con.executemany("INSERT INTO animals VALUES(?, ?, ?, ?)", ANIMALS)
     con.executemany("INSERT INTO people VALUES(?, ?, ?, ?)", PEOPLE)
     con.executemany("INSERT INTO people_animals VALUES(?, ?)", PEOPLE_ANIMALS)
+
+create_db()
