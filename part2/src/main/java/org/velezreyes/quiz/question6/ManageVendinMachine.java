@@ -9,15 +9,22 @@ public class ManageVendinMachine {
             vm.insertQuarter();
             vm.insertQuarter();
 
-            // Test that KarenTea costs more than 75 cents.
+
 
             vm.pressButton("KarenTea");
+
+
+            vm.insertQuarter();
+
+            Drink drink = vm.pressButton("KarenTea");
+            drink.isFizzy();
+            drink.getName();
 
 
         }catch (NotEnoughMoneyException e) {
             System.out.println("not");;
         } catch (UnknownDrinkException e) {
-            System.out.println("yes");;
+            System.out.println("no se puede meter aca");;
         }
     }
 }

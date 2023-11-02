@@ -4,6 +4,7 @@ public class VendingMachineImpl implements VendingMachine {
 
   private static VendingMachineImpl instancia;
   public int money_insert;
+
   public static VendingMachine getInstance() {
     if (instancia == null) {
       instancia = new VendingMachineImpl();
@@ -24,6 +25,7 @@ public class VendingMachineImpl implements VendingMachine {
     } else if (!name.equals("ScottCola") && !name.equals("KarenTea")){
       throw new UnknownDrinkException();
     }else{
+      this.money_insert=0;
       return drink1;
     }
   }
