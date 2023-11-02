@@ -72,3 +72,6 @@ def test_select_all_vegetarian_pets():
   assert rows[1] == ('martin', 'spinach')
   assert rows[2] == ('ricky', 'cough drops')
   assert rows[3] == ('shannon', 'turnips')
+
+
+

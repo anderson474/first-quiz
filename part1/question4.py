@@ -36,7 +36,11 @@ ON animal_id == pet_id WHERE owner_id IS NULL
 
 sql_pets_older_than_owner = """
 
-Your SQL here.
+SELECT COUNT(*) AS NumberOfPetsThanMoreOlders
+FROM animals AS a
+LEFT JOIN people_animals AS pa ON a.animal_id = pa.pet_id
+INNER JOIN people AS p ON pa.owner_id = p.person_id
+WHERE p.age IS NOT NULL AND a.age>p.age;
 
 """
 
@@ -45,6 +49,10 @@ Your SQL here.
 # The output should be a list of tuples in the format: (<person name>, <pet name>, <species>)
 sql_only_owned_by_bessie = """ 
 
-Your SQL here.
+SELECT p.name AS owner_name, a.name AS animal_name,  a.species
+FROM animals AS a
+LEFT JOIN people_animals AS pa ON a.animal_id = pa.pet_id
+INNER JOIN people AS p ON pa.owner_id = p.person_id
+WHERE p.name = 'bessie';
 
 """

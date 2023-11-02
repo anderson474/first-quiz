@@ -67,6 +67,8 @@ public class Question6Test {
     vm.insertQuarter();
     vm.insertQuarter();
 
+    Thread.sleep(2000);
+
     // Test that KarenTea costs more than 75 cents.
     assertThrows(NotEnoughMoneyException.class, () -> {
       vm.pressButton("KarenTea");
